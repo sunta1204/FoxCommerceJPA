@@ -1,5 +1,7 @@
 package civilize.user;
 
+
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -26,8 +28,22 @@ public class UserRepo {
         return entityManager.find(User.class, uId);  // ค้นหา Customer ตาม id
     }
     
-    public User findByUsernamePassword(String username , String password) {
-    	return entityManager.find(User.class, username);
+    @SuppressWarnings("rawtypes")
+	public User findByUsername(String username) {
+    	Query query = entityManager.createQuery("from User where username = :USERNAME");
+    	query.setParameter("USERNAME", username);
+    	List resultList = query.getResultList();
+    	return resultList.isEmpty() ? null : (User) resultList.get(0);
+    	}
+    
+    @SuppressWarnings("unchecked")
+	public User findByUsernamePassword(String username , String password) {
+    	Query query = entityManager.createQuery("from User where username = :USERNAME and password = :PASSWORD");
+    	query.setParameter("USERNAME", username);
+    	query.setParameter("PASSWORD", password);
+    	List<User> resultList = query.getResultList();
+    	
+    	return resultList.isEmpty() ? null : (User) resultList.get(0);
     }
 
     @Transactional

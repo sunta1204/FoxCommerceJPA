@@ -46,7 +46,7 @@
         <li>
           <div class="logo-wrapper waves-light">
             <p class="text-warning text-center" style="font-size: 20px;">ยินดีต้อนรับ</p>
-            <p class="text-warning text-center" style="font-size: 16px;">คุณ.......</p>
+            <p class="text-warning text-center" style="font-size: 16px;">คุณ  ${userProfile.username} </p>
           </div>
         </li>
         <!--/. Logo -->
@@ -152,7 +152,7 @@
   <!--/.Double navigation-->
 
   <main>
-    <div class="container-fluid" style="margin-top: 3%;">
+    <!--  <div class="container-fluid" style="margin-top: 3%;">
       <div class="table-responsive">
         <table class="table table-hover text-center">
           <thead class="black white-text">
@@ -164,19 +164,19 @@
             </tr>
           </thead>
           <tbody>
-            <c:forEach items="${userSalePageList}" var="salePage">
+            <c:forEach items="${salePageList}" var="salePageList">
               <tr>
                 <td>
-                  ${salePage.page_id}
+                  ${salePageList.pageId}
                 </td>
                 <td>
-                  <a href="/salePage/${salePage.page_id}"> ${salePage.page_name} </a>
+                  <a href="/salePage/${salePageList.pageId}"> ${salePageList.pageName} </a>
                 </td>
                 <td>
-                  <c:if test="${salePage.status=='1'}">
+                  <c:if test="${salePageList.status=='1'}">
                     กำลังใช้งาน
                   </c:if>
-                  <c:if test="${salePage.status=='2'}">
+                  <c:if test="${salePageList.status=='2'}">
                     ปิดการใช้งาน
                   </c:if>
                 </td>
@@ -189,7 +189,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
   </main>
 
 

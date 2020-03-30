@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class SalePage {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer pageId;
@@ -14,6 +15,12 @@ public class SalePage {
 	private Integer uId;
 	private String status;
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Integer getPageId() {
 		return pageId;
 	}
@@ -31,12 +38,6 @@ public class SalePage {
 	}
 	public void setuId(Integer uId) {
 		this.uId = uId;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	
 	
