@@ -152,7 +152,7 @@
   <!--/.Double navigation-->
 
   <main>
-    <!--  <div class="container-fluid" style="margin-top: 3%;">
+    <div class="container-fluid" style="margin-top: 3%;">
       <div class="table-responsive">
         <table class="table table-hover text-center">
           <thead class="black white-text">
@@ -170,7 +170,7 @@
                   ${salePageList.pageId}
                 </td>
                 <td>
-                  <a href="/salePage/${salePageList.pageId}"> ${salePageList.pageName} </a>
+                  <a target="_blank" href="/salePage/${salePageList.pageId}"> ${salePageList.pageName} </a>
                 </td>
                 <td>
                   <c:if test="${salePageList.status=='1'}">
@@ -189,7 +189,7 @@
           </tbody>
         </table>
       </div>
-    </div> -->
+    </div>
   </main>
 
 

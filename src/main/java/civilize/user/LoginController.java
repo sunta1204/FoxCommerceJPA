@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 	
 	@Autowired
-	private UserRepo userRepo; // สร้าง object Repository สำหรับเรียกใช้ในคลาส	
+	private UserRepo userRepo; // สร้าง object Repository สำหรับเรียกใช้ในคลาส
+	@Autowired
 	private SalePageRepo salePageRepo;
 	
 	//index
@@ -69,6 +70,10 @@ public class LoginController {
 			if(username != null && userType.equals("D")) { //ถ้า user ไม่มีค่า และ userStatus มีค่าเท่ากับ A 
 				User user = userRepo.findByUsername(username);
 				model.addAttribute("userProfile" , user);
+				
+				List<SalePage> salePage = salePageRepo.findByuId(uId);
+				System.out.println(uId);
+				model.addAttribute("salePageList", salePage);
 				
 				return "/User/dashboard";
 			}else {

@@ -28,6 +28,12 @@ public class UserRepo {
         return entityManager.find(User.class, uId);  // ค้นหา Customer ตาม id
     }
     
+    @SuppressWarnings("unchecked")
+	public List<User> findAll() {
+        Query query = entityManager.createQuery("from User");  // สร้าง Query ดึงข้อมูลทั้งหมดจากตาราง customer
+        return query.getResultList();  // ดึงรายการผลลัพธ์จากการ Query ส่งกลับ
+    }
+    
     @SuppressWarnings("rawtypes")
 	public User findByUsername(String username) {
     	Query query = entityManager.createQuery("from User where username = :USERNAME");
