@@ -17,7 +17,7 @@ public class PageContentRepo {
 	 @PersistenceContext
 	 private EntityManager entityManager;  // ใช้จัดการ object ต่างๆกับ ตารางในฐานข้อมูล
 	 
-	 @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<PageContent> findByPageId(Integer pageId) {
 		Query query = entityManager.createQuery("from PageContent where pageId = :PAGEID");
 		query.setParameter("PAGEID", pageId);

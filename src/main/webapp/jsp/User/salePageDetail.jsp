@@ -29,18 +29,24 @@
                 opacity: 1;
             }
         }
+        
+        .purple-border textarea {
+		    border: 1px solid #ff9100;
+		}
+        
+        .purple-border .form-control:focus {
+		    border: 1px solid #ff9100;
+		    box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.7);
+		}
     </style>
 </head>
 
 <body class="fixed-sn " style="background-color: #fff3e0;">
 
-    
-    <header>
-   
     	<!--Navbar -->
 		<nav class="mb-1 navbar navbar-expand-lg navbar-dark orange darken-1">
 			<div class="container">
-				<a class="navbar-brand" href="#"> ${salePageDetail.pageName } </a>
+				<a class="navbar-brand waves-light waves-effect" href="#"> ${salePageDetail.pageName } </a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
 			    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
@@ -74,44 +80,122 @@
 			</div>
 		</nav>
 		<!--Navbar --> 
-    </header>
 
-	<!-- Modal -->
+    
+    <!-- Modal -->
 	<form action="/createContent" method="post">
 		<div class="modal fade" id="editPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		  aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-		    <div class="modal-content">
+		    <div class="modal-content" style="border-radius: 15px;">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">แก้ไขหน้าเพจ</h5>
+		        <h5 class="modal-title " id="exampleModalLabel">แก้ไขหน้าเพจ</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		      	<input type="hidden" value=" ${salePageDetail.pageId} " name="pageId">
-		        <input type="text" class="form-control" name="content">
+		      	<div class="row">
+				  <div class="col-sm-5">
+				    <div class="list-group z-depth-1-half" id="list-tab" role="tablist">
+				      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#addContent"
+				        role="tab" aria-controls="home">เพิ่มบทความ</a>
+				      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#addPicture"
+				        role="tab" aria-controls="profile">เพิ่มรูปภาพ</a>
+				      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#addVideo"
+				        role="tab" aria-controls="messages">เพิ่มวิดีโอ</a>
+				      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#addContact"
+				        role="tab" aria-controls="settings">เพิ่มปุ่มติดต่อสอบถาม</a>
+				      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#addPromo"
+				        role="tab" aria-controls="settings">จับเวลาช่วงโปรโมชั่น</a>
+				    </div>
+				  </div>
+				  <div class="col-sm-7">
+				    <div class="tab-content" id="nav-tabContent">
+				      <div class="tab-pane fade show active" id="addContent" role="tabpanel" aria-labelledby="list-home-list">
+				       	<form action="/createContent" method="post">
+				       		<div class="form-group purple-border">
+							  <label > เพิ่มบทความ </label>
+							  <input type="hidden" value="${salePageDetail.pageId }" name="pageId">
+							  <textarea class="form-control" rows="3" name="content"></textarea>
+							</div>
+							<div class="form-group text-right">
+								<button type="submit" class="btn btn-primary" style="border-radius: 20px;"> SAVE </button>
+							</div>
+				       	 </form>
+				      </div>
+				      <div class="tab-pane fade" id="addPicture" role="tabpanel" aria-labelledby="list-profile-list">
+				       	<form action="/addPicture" class="md-form" method="post" enctype="multipart/form-data">
+							<div class="file-field">
+							    <div class="btn btn-pink btn-rounded btn-sm float-left">
+							      <span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Choose file</span>
+							      <input type="file" name="pictureName" required="required">
+							    </div>
+							    <div class="file-path-wrapper">
+							    	<input type="hidden" value="${salePageDetail.pageId }" name="pageId">
+							    	<input class="file-path validate" type="text" name="pictureNameString"  placeholder="อัพโหลดภาพโฆษณา">
+							    </div>
+							 </div><br>
+							 <div class="form-group text-right">
+								<button type="submit" class="btn btn-primary" style="border-radius: 20px;"> SAVE </button>
+							</div>
+						</form>
+				      </div>
+				      <div class="tab-pane fade" id="addVideo" role="tabpanel" aria-labelledby="list-messages-list">
+				      	<!-- Large input -->
+				      	<form action="/addVideo" method="post">
+				      		<div class="md-form form-lg">
+							  <input type="text" id="inputLGEx" class="form-control" name="videoName">
+							  <label for="inputLGEx">เพิ่มวิดีโอ</label>
+							</div>
+							<div class="form-group text-right">
+								<input type="hidden" value="${salePageDetail.pageId }" name="pageId">
+								<button type="submit" class="btn btn-primary" style="border-radius: 20px;"> SAVE </button>
+							</div>
+				      	</form>	
+				      </div>
+				      <div class="tab-pane fade" id="addContact" role="tabpanel" aria-labelledby="list-settings-list">
+				        
+				      </div>
+				      <div class="tab-pane fade" id="addPromo" role="tabpanel" aria-labelledby="list-settings-list">
+				        
+				      </div>
+				    </div>
+				  </div>
+				</div>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="submit" class="btn btn-primary">Save</button>
+		        
 		      </div>
 		    </div>
 		  </div>
 		</div>
 	</form>
 	
-    <div class="container-fluid" style="margin: 3% 5% 3% 5%;">
-    	<c:if test="${contentDescription == null}">
+
+    	<div class="container-fluid">
+    		<c:if test="${contentDescription == null}">
+	    	
+	    	</c:if>
+			<c:if test="${contentDescription != null}">
+				<c:forEach items="${contentDescription}" var="contentDescription">
+					<label class="text-primary" style="font-size: 20px;">
+						${contentDescription.content}
+					</label><br>
+				</c:forEach>
+			</c:if>
+			
+			<c:if test="${videoDescription == null}">
+	    	
+	    	</c:if>
+			<c:if test="${videoDescription != null}">
+				<c:forEach items="${videoDescription}" var="videoDescription">
+					<iframe width="560" height="315" src="${videoDescription.videoName}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</c:forEach>
+			</c:if>
+    	</div>
     	
-    	</c:if>
-		<c:if test="${contentDescription != null}">
-			<c:forEach items="${contentDescription}" var="contentDescription">
-				<label class="text-primary" style="font-size: 20px;">
-					${contentDescription.content}
-				</label><br>
-			</c:forEach>
-		</c:if>
-    </div>
+   
     	
 
     <!-- SCRIPTS -->
@@ -132,6 +216,8 @@
             var sideNavScrollbar = document.querySelector('.custom-scrollbar');
             var ps = new PerfectScrollbar(sideNavScrollbar);
         });
+        
+        $('.file-upload').file_upload();
     </script>
 </body>
 

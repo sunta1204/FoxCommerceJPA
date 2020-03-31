@@ -1,4 +1,4 @@
-package civilize.user.pageedit.copy;
+package civilize.user.pageedit;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,25 +6,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PageContent {
+public class PageVideo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer contentId;
-	private String content;
+	private Integer videoId;
+	private String videoName;
 	private Integer pageId;
-	
-	public Integer getContentId() {
-		return contentId;
+	public Integer getVideoId() {
+		return videoId;
 	}
-	public void setContentId(Integer contentId) {
-		this.contentId = contentId;
+	public void setVideoId(Integer videoId) {
+		this.videoId = videoId;
 	}
-	public String getContent() {
-		return content;
+	public String getVideoName() {
+		return videoName;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setVideoName(String videoName) {
+		this.videoName = videoName;
 	}
 	public Integer getPageId() {
 		return pageId;
@@ -32,5 +31,7 @@ public class PageContent {
 	public void setPageId(Integer pageId) {
 		this.pageId = pageId;
 	}
+	
+	
 
 }

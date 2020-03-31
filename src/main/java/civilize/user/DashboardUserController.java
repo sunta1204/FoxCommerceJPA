@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import civilize.user.pageedit.PageContent;
 import civilize.user.pageedit.PageContentRepo;
+import civilize.user.pageedit.PageVideo;
+import civilize.user.pageedit.PageVideoRepo;
 
 @Controller
 public class DashboardUserController {
@@ -26,6 +28,8 @@ public class DashboardUserController {
 	private SalePageRepo salePageRepo;
 	@Autowired
 	private PageContentRepo pageContentRepo;
+	@Autowired
+	private PageVideoRepo pageVideoRepo;
 	
 	@GetMapping("/salePage/{pageId}") // ใช้แสดงลูกค้า 1 คน ตามรหัส
 	public String getSalePage(@PathVariable Integer pageId, Model model) {
@@ -35,6 +39,9 @@ public class DashboardUserController {
 		
 		List<PageContent> contentDescription = pageContentRepo.findByPageId(pageId);
 		model.addAttribute("contentDescription", contentDescription);
+		
+		List<PageVideo> videoDescription = pageVideoRepo.findByPageId(pageId);
+		model.addAttribute("videoDescription", videoDescription);
 	
 		return "/User/salePageDetail";
 	}
