@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import civilize.user.pageedit.PageContent;
+import civilize.user.pageedit.PageContentRepo;
+
 @Controller
 public class DashboardUserController {
 	
@@ -21,11 +24,18 @@ public class DashboardUserController {
 	private UserRepo userRepo; // สร้าง object Repository สำหรับเรียกใช้ในคลาส
 	@Autowired
 	private SalePageRepo salePageRepo;
+	@Autowired
+	private PageContentRepo pageContentRepo;
 	
 	@GetMapping("/salePage/{pageId}") // ใช้แสดงลูกค้า 1 คน ตามรหัส
 	public String getSalePage(@PathVariable Integer pageId, Model model) {
+		
 		SalePage salePageDetail = salePageRepo.findByPageId(pageId);
 		model.addAttribute("salePageDetail", salePageDetail);
+		
+		List<PageContent> contentDescription = pageContentRepo.findByPageId(pageId);
+		model.addAttribute("contentDescription", contentDescription);
+	
 		return "/User/salePageDetail";
 	}
 

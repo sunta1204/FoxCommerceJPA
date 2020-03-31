@@ -48,11 +48,11 @@
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
                 <li class="nav-item">
                     <a class="nav-link">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-user"></i>&nbsp; Login </button> </a>
+                        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-user"></i>&nbsp; Login </button> </a>
                 </li>
                 <li>
 					<a>
-						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalRegister"><i class="fas fa-user-plus"></i>&nbsp; Register </button>
+						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalRegister"><i class="fas fa-user-plus" ></i>&nbsp; Register </button>
 					</a>
                 </li>
             </ul>
@@ -81,14 +81,14 @@
                         <div class="modal-body mx-3">
                             <div class="md-form mb-5">
                                 <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="text" id="defaultForm-email" name="username" class="form-control validate" autofocus>
+                                <input required="required" type="text" id="defaultForm-email" name="username" class="form-control validate">
                                 <label data-error="wrong" data-success="right" for="defaultForm-email">Username
                                     email</label>
                             </div>
 
                             <div class="md-form mb-4">
                                 <i class="fas fa-lock prefix grey-text"></i>
-                                <input type="password" id="defaultForm-pass" name="password" class="form-control validate">
+                                <input required="required" type="password" id="defaultForm-pass" name="password" class="form-control validate">
                                 <label data-error="wrong" data-success="right" for="defaultForm-pass">Password
                                     </label>
                             </div>
@@ -120,13 +120,13 @@
 			      <div class="modal-body mx-3">
 			        <div class="md-form mb-5">
 			          <i class="fas fa-user prefix grey-text"></i>
-			          <input type="text" id="orangeForm-name" name="username" class="form-control validate">
+			          <input required="required" type="text" id="orangeForm-name" name="username" class="form-control validate">
 			          <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
 			        </div>
 			    
 			        <div class="md-form mb-4">
 			          <i class="fas fa-lock prefix grey-text"></i>
-			          <input type="password" id="orangeForm-pass" name="password" class="form-control validate">
+			          <input required="required" type="password" id="orangeForm-pass" name="password" class="form-control validate">
 			          <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
 			        </div>
 			

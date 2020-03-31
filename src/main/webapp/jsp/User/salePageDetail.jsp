@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Fox Commerce</title>
+    <title> ${salePageDetail.pageName } Detail </title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -34,40 +34,85 @@
 
 <body class="fixed-sn " style="background-color: #fff3e0;">
 
-    <!-- Start your project here-->
-    <!--Double navigation-->
-    <header>
     
-        <!-- Navbar -->
-        <nav class="navbar fixed-top  navbar-expand-lg scrolling-navbar  orange darken-3">
-            <!-- Breadcrumb-->
-            <div class="breadcrumb-dn mr-auto">
-                <a href="index.html" class="btn btn-light"> <img src="../logo/logo.png"
-                        style="max-width: 100px; max-height: 100px;"> </a>
-            </div>
-            <ul class="nav navbar-nav nav-flex-icons ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-user"></i>&nbsp; Login </button> </a>
-                </li>
-                <li>
-					<a>
-						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalRegister"><i class="fas fa-user-plus"></i>&nbsp; Register </button>
-					</a>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.Navbar -->
+    <header>
+   
+    	<!--Navbar -->
+		<nav class="mb-1 navbar navbar-expand-lg navbar-dark orange darken-1">
+			<div class="container">
+				<a class="navbar-brand" href="#"> ${salePageDetail.pageName } </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+			    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+			    <ul class="navbar-nav mr-auto">
+			      
+			    </ul>
+			    <ul class="navbar-nav ml-auto nav-flex-icons">
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+			          aria-haspopup="true" aria-expanded="false">
+			          <i class="fas fa-user"></i>&nbsp;
+			          	จัดการระบบ
+			        </a>
+			        <div class="dropdown-menu  dropdown-default"
+			          aria-labelledby="navbarDropdownMenuLink-333">
+			          <button type="button" data-toggle="modal" data-target="#editPage" class="dropdown-item">
+			          	<i class="fas fa-tools"></i>&nbsp; จัดการหน้าเพจ
+			          </button>
+			          <button type="button" data-toggle="modal" data-target="#" class="dropdown-item">
+			          	<i class="fas fa-tools"></i>&nbsp; สร้างหน้าขอบคุณลูกค้า
+			          </button>
+			          <button type="button" data-toggle="modal" data-target="#" class="dropdown-item">
+			          	<i class="fas fa-tools"></i>&nbsp; จัดการสินค้า
+			          </button>
+			        </div>
+			      </li>
+			    </ul>
+			  </div> 
+			</div>
+		</nav>
+		<!--Navbar --> 
     </header>
-    <!--/.Double navigation-->
 
-    <main>
-
-        
-    </main>
-
-
-
+	<!-- Modal -->
+	<form action="/createContent" method="post">
+		<div class="modal fade" id="editPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		  aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">แก้ไขหน้าเพจ</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<input type="hidden" value=" ${salePageDetail.pageId} " name="pageId">
+		        <input type="text" class="form-control" name="content">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="submit" class="btn btn-primary">Save</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>
+	
+    <div class="container-fluid" style="margin: 3% 5% 3% 5%;">
+    	<c:if test="${contentDescription == null}">
+    	
+    	</c:if>
+		<c:if test="${contentDescription != null}">
+			<c:forEach items="${contentDescription}" var="contentDescription">
+				<label class="text-primary" style="font-size: 20px;">
+					${contentDescription.content}
+				</label><br>
+			</c:forEach>
+		</c:if>
+    </div>
+    	
 
     <!-- SCRIPTS -->
     <!-- JQuery -->
