@@ -38,6 +38,14 @@
 		    border: 1px solid #ff9100;
 		    box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.7);
 		}
+		
+		.zoomclass{
+			transition: transform .1s;
+		}
+		.zoomclass:hover{
+			transform: scale(1.005);
+			
+		}
     </style>
 </head>
 
@@ -125,21 +133,21 @@
 				       	 </form>
 				      </div>
 				      <div class="tab-pane fade" id="addPicture" role="tabpanel" aria-labelledby="list-profile-list">
-				       	<form action="/addPicture" class="md-form" method="post" enctype="multipart/form-data">
+				       	<form action="/uploadFile" class="md-form" method="post" enctype="multipart/form-data">
 							<div class="file-field">
 							    <div class="btn btn-pink btn-rounded btn-sm float-left">
 							      <span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Choose file</span>
-							      <input type="file" name="pictureName" required="required">
+							      <input type="hidden" value="${salePageDetail.pageId }" name="pageId">
+							      <input type="file" name="file" required="required"> 
 							    </div>
 							    <div class="file-path-wrapper">
-							    	<input type="hidden" value="${salePageDetail.pageId }" name="pageId">
-							    	<input class="file-path validate" type="text" name="pictureNameString"  placeholder="อัพโหลดภาพโฆษณา">
+							    	<input class="file-path validate" type="text"  placeholder="อัพโหลดภาพโฆษณา">
 							    </div>
 							 </div><br>
 							 <div class="form-group text-right">
 								<button type="submit" class="btn btn-primary" style="border-radius: 20px;"> SAVE </button>
 							</div>
-						</form>
+						</form>	
 				      </div>
 				      <div class="tab-pane fade" id="addVideo" role="tabpanel" aria-labelledby="list-messages-list">
 				      	<!-- Large input -->
@@ -190,8 +198,16 @@
 	    	</c:if>
 			<c:if test="${videoDescription != null}">
 				<c:forEach items="${videoDescription}" var="videoDescription">
-					<iframe width="560" height="315" src="${videoDescription.videoName}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe class=" rounded hoverable zoomclass" class="img-fluid" src="${videoDescription.videoName}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</c:forEach>
+			</c:if><br><br>
+			<c:if test="${picture  == null}">
+				Not HAVE PICTURE
+			</c:if>
+			<c:if test="${picture != null }">
+				<c:forEach items="${picture }" var="picture">
+					<img alt="" src="../../pagepicture/${picture.fileName}.jpg" class="img-fluid rounded hoverable zoomclass">
+				</c:forEach><br>
 			</c:if>
     	</div>
     	
